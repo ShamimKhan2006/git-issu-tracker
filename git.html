@@ -47,20 +47,20 @@
 
     <section>
         <div class=" mt-5 w-[70%] mx-auto bg-base-200 shadow p-5">
-            <button class="btn btn-primary">All</button>
+            <button  id="all-btn"class="btn btn-primary">All</button>
 
-            <button class="btn btn-primary">open</button>
+            <button  id="open-btn" class="btn btn-primary">Open</button>
 
-            <button class="btn btn-primary">Close</button>
+            <button id="close-btn" class="btn btn-primary">Closed</button>
         </div>
     </section>
 
     <main>
-        <div class=" w-[70%] mx-auto bg-base-200 shadow p-5 mt-5 flex justify-between items-center">
+         <div class="child-sec w-[70%] mx-auto bg-base-200 shadow  mt-5 flex justify-between items-center p-5">
             <div class="flex justify-between items-center">
                 <img src="./assets/Aperture.png" alt="">
                 <div>
-                    <h2 class="pl-2 text-[20px] font-semibold">50 Issues</h2>
+                    <h2 class="pl-2 text-[20px] font-semibold" id="total">50 Issues</h2>
                     <p class="pl-2">Track and manage your project issues</p>
                 </div>
             </div>
@@ -73,107 +73,28 @@
                 </div>
             </div>
         </div>
-    </main>
-    <section>
-        <div class=" w-[70%] mx-auto bg-base-200 shadow p-5 mt-5 flex justify-between items-center grid grid-cols-4">
-            <div class="bg-green-200 p-5 rounded-2xl shadow-2xl space-y-3 max-w-2xs">
-                <div class="flex justify-between items-center">
-                   <div>
-                        <button class="btn btn-soft btn-success" <span><i class="fa-brands fa-galactic-republic"></i></span></button>
-                    </div>
-                <div>
-                    <button class="btn btn-soft btn-error mx-auto">High</button>
-                </div>
-                </div>
     
-                <h3 class="font-bold text-2xl">Fix navigation menu on mobile devices</h3>
-                <p class="line-clamp-3">The navigation menu doesn't collapse properly on mobile devices...</p>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <button class="btn btn-soft btn-error" <span><i class="fa-solid fa-bug "></i></span>Bug</button>
-                    </div>
-                    <div>
-                        <button class="btn btn-soft  btn-warning" <span><i
-                                class="fa-brands fa-galactic-republic"></i></span>Help wanted</button>
-                    </div>
-                </div>
-                   <p class="text-gray-400 text-left">#1 by john_doe</p>
-                   <p class="text-gray-400 text-left">1/15/2024</p>
-            </div>
-            <div class="bg-base-200 p-5 rounded-2xl shadow-2xl space-y-3 max-w-2xs">
-                <div class="flex justify-between items-center">
-                   <div>
-                        <button class="btn btn-soft btn-success" <span><i class="fa-brands fa-galactic-republic"></i></span></button>
-                    </div>
-                <div>
-                    <button class="btn btn-soft btn-error mx-auto">High</button>
-                </div>
-                </div>
-    
-                <h3 class="font-bold text-2xl">Fix navigation menu on mobile devices</h3>
-                <p class="line-clamp-3">The navigation menu doesn't collapse properly on mobile devices...</p>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <button class="btn btn-soft btn-error" <span><i class="fa-solid fa-bug "></i></span>Bug</button>
-                    </div>
-                    <div>
-                        <button class="btn btn-soft  btn-warning" <span><i
-                                class="fa-brands fa-galactic-republic"></i></span>Help wanted</button>
-                    </div>
-                </div>
-                   <p class="text-gray-400 text-left">#1 by john_doe</p>
-                   <p class="text-gray-400 text-left">1/15/2024</p>
-            </div>
-            <div class="bg-base-200 p-5 rounded-2xl shadow-2xl space-y-3 max-w-2xs">
-                <div class="flex justify-between items-center">
-                   <div>
-                        <button class="btn btn-soft btn-success" <span><i class="fa-brands fa-galactic-republic"></i></span></button>
-                    </div>
-                <div>
-                    <button class="btn btn-soft btn-error mx-auto">High</button>
-                </div>
-                </div>
-    
-                <h3 class="font-bold text-2xl">Fix navigation menu on mobile devices</h3>
-                <p class="line-clamp-3">The navigation menu doesn't collapse properly on mobile devices...</p>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <button class="btn btn-soft btn-error" <span><i class="fa-solid fa-bug "></i></span>Bug</button>
-                    </div>
-                    <div>
-                        <button class="btn btn-soft  btn-warning" <span><i
-                                class="fa-brands fa-galactic-republic"></i></span>Help wanted</button>
-                    </div>
-                </div>
-                   <p class="text-gray-400 text-left">#1 by john_doe</p>
-                   <p class="text-gray-400 text-left">1/15/2024</p>
-            </div>
-            <div class="bg-green-200 p-5 rounded-2xl shadow-2xl space-y-3 max-w-2xs">
-                <div class="flex justify-between items-center">
-                   <div>
-                        <button class="btn btn-soft btn-success" <span><i class="fa-brands fa-galactic-republic"></i></span></button>
-                    </div>
-                <div>
-                    <button class="btn btn-soft btn-error mx-auto">High</button>
-                </div>
-                </div>
-    
-                <h3 class="font-bold text-2xl">Fix navigation menu on mobile devices</h3>
-                <p class="line-clamp-3">The navigation menu doesn't collapse properly on mobile devices...</p>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <button class="btn btn-soft btn-error" <span><i class="fa-solid fa-bug "></i></span>Bug</button>
-                    </div>
-                    <div>
-                        <button class="btn btn-soft  btn-warning" <span><i
-                                class="fa-brands fa-galactic-republic"></i></span>Help wanted</button>
-                    </div>
-                </div>
-                   <p class="text-gray-400 text-center">#1 by john_doe</p>
-                   <p class="text-gray-400 text-center">1/15/2024</p>
-            </div>
-        </div>
-    </section>
+    <section id="perent-sec" class="w-[70%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 p-3 gap-4 ">
+        
+    </section> 
+     </main>
+     
+
+ <dialog id="myModall" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">hellow</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+         <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+
+ <script src="./js/git.js"></script>
 </body>
 
 </html>

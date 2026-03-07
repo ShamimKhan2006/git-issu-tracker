@@ -6,6 +6,7 @@ document.getElementById("sign-btn").addEventListener("click", () =>{
 
 if(inputnameValue.trim() !== ""  && inputpassValue === "admin123"){
     alert("login succedfull")
+    window.location="./git.html"
 
 }else{
     alert("login fail")
