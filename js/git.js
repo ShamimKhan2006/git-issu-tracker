@@ -134,7 +134,7 @@ openBtn.addEventListener("click", () => {
 });
 
 closedBtn.addEventListener("click", () => {
-  const closed = allissu.filter((i) => i.status === "closed");
+  const closed = allissu.filter((i) => i.status === "closed")
   displayIssues(closed);
   updateCount(closed.length);
 });
