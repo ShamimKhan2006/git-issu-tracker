@@ -1,96 +1,157 @@
-// const status =() =>{
-// let openBtn = document.getElementById("open-btn");
-// openBtn.classList.remove("hidden")
-// openBtn.classList.add("btn btn-primary")
-// let closedBtn = document.getElementById("closed-btn")
-// closedBtn.classList.add("hidden")
-// closedBtn.classList.remove("btn btn-primary")
+const openBtn = document.getElementById("open-btn");
+const allBtn = document.getElementById("all-btn");
+const closedBtn = document.getElementById("close-btn");
+const buttons = document.getElementById("buttons");
+const perentSecStatus = document.getElementById("status-sec");
+const countIssu = document.getElementById("countissu");
 
-// }
+let allissu = [];
 
-loadIssu = () => {
-  document.getElementById("all-btn").addEventListener("click", async () => {
-    try {
-      const res = await fetch(
-        "https://phi-lab-server.vercel.app/api/v1/lab/issues",
-      );
-      const data = await res.json();
+buttons.addEventListener("click", (event) => {
+  const clickValue = event.target;
 
-      displayallIssu(data.data);
-    } catch (err) {
-      console.log("error", err);
-    }
-  });
+  allBtn.classList.remove("btn-primary");
+  openBtn.classList.remove("btn-primary");
+  closedBtn.classList.remove("btn-primary");
+
+  if (clickValue.id === "open-btn") {
+    openBtn.classList.add("btn-primary");
+  } else if (clickValue.id === "close-btn") {
+    closedBtn.classList.add("btn-primary");
+  } else if (clickValue.id === "all-btn") {
+    allBtn.classList.add("btn-primary");
+  }
+});
+
+const countDisplay = document.getElementById("total-issue-count");
+
+const updateCount = (count) => {
+  countIssu.innerText = `${count} Issues`;
 };
-const displayallIssu = (infos) => {
-  const perentSec = document.getElementById("perent-sec");
-  perentSec.innerHTML = "";
 
-  infos.forEach((element) => {
-    const newDiv = document.createElement("div");
+const loadIssues = async () => {
+  const res = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues/",
+  );
+  const data = await res.json();
+  allissu = data.data;
+  displayIssues(allissu);
+};
 
-    newDiv.innerHTML = `
-      <div id="child-sec" class=" mx-auto  p-5 flex justify-center items-center  onclick="my_modal_1.showModal()">
-            <div class="bg-base-200 p-5 rounded-2xl shadow-md space-y-3  w-full">
-                <div class="flex justify-between items-center">
-                   <button class="btn btn-soft btn-success"<i class="fa-brands fa-galactic-republic"></i></span></button>
-                <div>
-                    <button class="btn btn-soft btn-error mx-auto">${element.priority}</button>
-                </div>
-                </div>
+const displayIssues = (issues) => {
+  perentSecStatus.innerHTML = "";
+
+  issues.forEach((item) => {
+    const borderColor =
+      item.status === "open" ? "border-t-green-500" : "border-t-purple-500";
+
+    const div = document.createElement("div");
+
+    div.innerHTML = `
     
-                <h3 class="font-bold text-[20px]">${element.title}</h3>
-                <p class="line-clamp-1">${element.description}</p>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <button class="btn btn-soft btn-error" <span><i class="fa-solid fa-bug "></i></span>Bug</button>
-                    </div>
-                    <div>
-                        <button class="btn btn-soft  btn-warning" <span><i
-                                class="fa-brands fa-galactic-republic"></i></span>Help wanted</button>
-                    </div>
-                </div>
-                   <p class="text-gray-400 text-left"></p>
-                   <p class="text-gray-400 text-left"></p> 
-            </div> 
-            
-          
-        </div>
-    `;
+<div onclick="document.getElementById('myModal${item.id}').showModal()"
+class="bg-base-100 p-6 rounded-2xl shadow-md space-y-4 border-t-4 ${borderColor} flex flex-col justify-between cursor-pointer">
 
-    perentSec.appendChild(newDiv);
+<div class="flex justify-between">
+<span class="badge badge-ghost">${item.status}</span>
+</div>
+
+<div>
+<h3 class="font-bold text-lg">${item.title}</h3>
+<p>${item.description}</p>
+</div>
+
+<div class="flex gap-2">
+<span class="badge badge-soft badge-error">${item.labels?.[0] || ""}</span>
+<span class="badge badge-soft badge-warning">${item.labels?.[1] || ""}</span>
+</div>
+
+<p class="text-xs text-gray-400">
+${new Date(item.createdAt).toLocaleDateString()}
+</p>
+
+</div>
+
+<dialog id="myModal${item.id}" class="modal">
+
+<div class="modal-box space-y-4">
+
+<h3 class="font-bold text-lg">${item.title}</h3>
+
+<p>${item.description}</p>
+
+<div class="flex gap-2">
+<span class="badge badge-success">${item.status}</span>
+<span>${item.author}</span>
+<p>
+${new Date(item.createdAt).toLocaleDateString()}
+</p>
+
+</div>
+
+<div class="flex gap-2">
+<span class="badge badge-soft badge-error">${item.labels?.[0] || ""}</span>
+<span class="badge badge-soft badge-warning">${item.labels?.[1] || ""}</span>
+</div>
+
+
+
+<div class="flex justify-between w-full border-none shadow bg-gray-100 p-4"> 
+<div> 
+<p>Assignee</p>
+ <span class="font-bold">${item.author}</span>
+</div>
+
+<div>
+  <p>Priority</p>
+  <span class="btn btn-error">${item.priority}</span>
+</div>
+</div>
+<div class="modal-action">
+<form method="dialog">
+<button class="btn btn-primary">Close</button>
+</form>
+</div>
+
+</div>
+
+</dialog>
+`;
+
+    perentSecStatus.appendChild(div);
   });
 };
 
-loadIssu();
+allBtn.addEventListener("click", () => {
+  displayIssues(allissu);
+  updateCount(allissu.length);
+});
 
-const loadCard = () => {
-  document
-    .getElementById("perent-sec")
-    .addEventListener("click", async (event) => {
-      const targetValue = event.target.closest(".child-sec");
-      if (!targetValue) return;
-      const ress = await fetch(
-        "https://phi-lab-server.vercel.app/api/v1/lab/issues",
-      );
-      const data = await ress.json();
-      displayCard(data.data);
-    });
-};
+openBtn.addEventListener("click", () => {
+  const open = allissu.filter((i) => i.status === "open");
+  displayIssues(open);
+  updateCount(open.length);
+});
 
-const displayCard = (less) => {
-  const myModal = document.getElementById("myModal");
-  myModal.innerHTML = `<div class="modal-box">
-    <h3 class="text-lg font-bold">Hello</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <button class="btn">Close</button>
-      </form>
-    </div>
-  </div>`;
+closedBtn.addEventListener("click", () => {
+  const closed = allissu.filter((i) => i.status === "closed");
+  displayIssues(closed);
+  updateCount(closed.length);
+});
 
-  document.getElementById("myModall").showModal();
-};
+document.getElementById("newIssuBtn").addEventListener("click", () => {
+  const inputValue = document
+    .getElementById("searchInput")
+    .value.trim()
+    .toLowerCase();
 
-loadCard();
+  const filtered = allissu.filter(
+    (issue) =>
+      issue.title.toLowerCase().includes(inputValue) ||
+      issue.description.toLowerCase().includes(inputValue),
+  );
+
+  displayIssues(filtered);
+});
+
+loadIssues();
